@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Home - Impacto Ambiental</title>
+    <link
+            rel="stylesheet"
+            href="composicion-hc-org.css"
+    />
+    <!--SCRIPTS PARA EL GRAFICO-->
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <script>
+        google.charts.load('current', {packages: ['corechart']});
+        google.charts.setOnLoadCallback(drawStuff);
+
+        function drawStuff() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Periodo');
+            data.addColumn('number', 'HC Total');
+            data.addRows([
+                ['07/2020', 16768100],
+                ['08/2020', 19181204],
+                ['09/2020', 14898532],
+                ['10/2020', 13730261],
+                ['11/2020', 12678455]
+            ]);
+
+            var options = {
+                chart: {
+                    title: 'Nombre Sector',
+                    subtitle: ''
+                },
+                height: 300,
+                width: 1200,
+                legend: 'none',
+                bar: {groupWidth: '95%'},
+                vAxis: {
+                    title: 'Unidad: XXXXeqCO2',
+                    gridlines: {count: 4}
+                }
+            };
+
+            var chart = new google.visualization.ColumnChart(document.getElementById('grafico'));
+            chart.draw(data, options);
+        };
+    </script>
+</head>
+
+<body>
+<header class="flex-row">
+    <a href="#" class="logo flex-row">
+        <img src="#" alt="Logo de la página"/>
+        <h1>Impacto Ambiental</h1>
+    </a>
+    <nav class="flex-row">
+        <div class="secciones flex-row">
+            <a href="#" class="seccion"> Composición HC del Sector </a>
+            <a href="#" class="seccion "> Evolución HC del Sector </a>
+            <a href="#" class="seccion"> HC Total </a>
+            <a href="#" class="seccion active"> Organizaciones </a>
+        </div>
+        <!--TODO PONER EL LINK DEL HOME SIN LOGGEAR-->
+    </nav>
+    <form action="/index.html" method="POST" class="btn-logout">
+        <label for="boton-logout">
+            <img
+                    src="Gender_Neutral_User_icon-icons.com_55902.svg"
+                    alt="icono logout"
+            />
+            <input type="submit" id="boton-logout" value="Salir"/>
+        </label>
+    </form>
+</header>
+<div id="main-section">
+    <h2 class="titulo">Evolución HC de Organización</h2>
+    <div id="grafico"></div>
+</div>
+<footer class="flex-row">
+    <p>Pirulo S.A. Derechos Reservados</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,210 @@
+:root {
+    --verde-principal: #216869;
+    --verde-mas-claro: #49A078;
+    --color-fondo: #DCE1DE;
+    --titulo-principal-size: 20px;
+    --color-texto: #1F2421;
+    --color-seccion-activa: #9CC5A1;
+    --color-boton-rechazar: #9CC5A1;
+    --fonts: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+* {
+    font-family: var(--fonts);
+    color: var(--color-texto);
+}
+
+html {
+    background-color: var(--color-fondo);
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin: 0;
+}
+
+header {
+    height: 60px;
+    background-color: var(--verde-principal);
+    padding: 5px 20px;
+}
+
+nav {
+    padding-left: 30px;
+    width: 100%;
+    height: 100%;
+}
+
+#main-section {
+    padding: 20px;
+    background-color: var(--color-fondo);
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: center;
+}
+
+footer {
+    font-weight: bold;
+    justify-content: center;
+    background-color: var(--verde-principal);
+    height: 50px;
+    margin-top: auto;
+}
+
+.logo {
+    text-decoration: none;
+    color: var(--color-texto);
+}
+
+.logo h1 {
+    margin: 0;
+    font-size: var(--titulo-principal-size);
+    padding-left: 10px;
+}
+
+.logo img {
+    height: 50px;
+    width: 50px;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.flex-clm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btn-logout {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 60px;
+    border-radius: 100%;
+}
+
+/*TODO AGREGAR ANIMACIÓN PARA QUE EL COLOR SE CAMBIE DE FORMA MÁS SUAVE*/
+.btn-logout:hover {
+    background-color: var(--verde-mas-claro);
+}
+
+.btn-logout label {
+    height: 60px;
+    width: 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.btn-logout input {
+    background-color: inherit;
+    border: none;
+}
+
+.secciones {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    height: 90%;
+}
+
+.seccion {
+    width: 160px;
+    height: 100%;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 3px solid var(--verde-principal);
+    margin: 0px 10px;
+    text-align: center;
+    text-decoration: none;
+    color: var(--color-texto);
+}
+
+.seccion:hover, .active {
+    border-color: var(--color-seccion-activa);
+    color: var(--color-seccion-activa);
+}
+
+/*TARJETAS SOLICITUD*/
+
+.tarjetas {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0px 30px;
+}
+
+.tarjeta {
+    width: 100%;
+    border: 2px solid var(--verde-principal);
+    padding: 10px;
+    justify-content: space-between;
+    margin-right: 20px;
+    margin-bottom: 10px;
+}
+
+.tarjeta * {
+    width: 100%;
+}
+
+.header-tarjeta {
+    width: 50%;
+
+}
+
+.header-tarjeta h3 {
+    margin: 0;
+    text-align: center;
+    font-size: 20px;
+}
+
+.botones-tarjeta {
+    height: 50px;
+    width: 300px;
+    padding: 10px 20px 0;
+    justify-content: space-evenly;
+}
+
+.botones-tarjeta * {
+    width: 80px;
+    height: 40px;
+}
+
+.btn {
+    background-color: var(--color-boton-rechazar);
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+}
+
+.btn img {
+    width: 30px;
+    height: 30px;
+}
+
+.primary {
+    background-color: var(--verde-principal);
+}
+
+.btn:hover {
+    background-color: var(--verde-mas-claro);
+}
+
+.titulo {
+    font-size: 40px;
+    text-align: center;
+}

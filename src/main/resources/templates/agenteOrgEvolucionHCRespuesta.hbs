@@ -1,0 +1,53 @@
+{{#partial "script"}}
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+            google.charts.load('current', {'packages': ['bar']});
+            google.charts.setOnLoadCallback(drawChart);
+
+            function drawChart() {
+                /*ARRAY DE ARRAYS QUE REPRESENTAN CADA UNO UNA FILA*/
+                const datos = [
+                    /*COLUMNAS*/
+                    ['Mes', 'HC Total'],
+                    /*DATOS*/
+                    {{#each items}}
+
+                        ["{{this.periodoMensual.mes}}/{{this.periodoMensual.anio}}", {{this.valor}} ],
+                    {{/each}}
+                ];
+
+                var data = google.visualization.arrayToDataTable(datos);
+
+                var options = {
+                    chart: {
+                        title: '{{nombreOrg}}',
+                        subtitle: 'Periodo {{inicio.mes}}/{{inicio.anio}} - {{fin.mes}}/{{fin.anio}}',
+                    }
+                };
+
+                var chart = new google.charts.Bar(document.getElementById('grafico'));
+
+                chart.draw(data, google.charts.Bar.convertOptions(options));
+            }
+        </script>
+{{/partial}}
+
+{{#partial "navbar-options"}}
+    <a href="/home/composicion-hc" class="seccion">Compocicion Hc del Sector</a>
+    <a href="/home/evolucion-hc" class="seccion ">Evolución HC del Sector</a>
+    <a href="/home/hc-total" class="seccion">HC Total</a>
+    <a href="/home/organizaciones" class="seccion active">Organizaciones</a>
+{{/partial}}
+
+{{#partial "usuario"}}
+    <p>{{usuario}}</p>
+{{/partial}}
+
+{{#partial "content"}}
+     <h2 class="titulo">Evolución de HC de {{nombreOrg}}</h2>
+        <div id="grafico">
+
+        </div>
+{{/partial}}
+
+{{>home-iniciado-sesion.hbs}}

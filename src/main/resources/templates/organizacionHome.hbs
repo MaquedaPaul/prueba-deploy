@@ -1,0 +1,16 @@
+{{#partial "navbar-options"}}
+    <a class="seccion" href="/home/vinculaciones">Gestionar Vinculaciones</a>
+    <a class="seccion" href="/home/calculadora-hc">Calculadora Hc</a>
+    <a class="seccion" href="/home/mediciones">Registrar Mediciones</a>
+{{/partial}}
+
+{{#partial "usuario"}}
+    <p>{{usuario}}</p>
+{{/partial}}
+
+
+{{#partial "content"}}
+    <h2>Bienvenido Organizacion {{usuario}}</h2>
+{{/partial}}
+
+{{>home-iniciado-sesion.hbs}}

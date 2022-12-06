@@ -1,0 +1,45 @@
+{{#partial "navbar-options"}}
+    <a href="/home/composicion-hc" class="seccion" >Compocicion Hc del Sector</a>
+    <a href="/home/evolucion-hc" class="seccion">Evolución HC del Sector</a>
+    <a href="/home/hc-total" class="seccion">HC Total</a>
+    <a href="/home/organizaciones" class="seccion active">Organizaciones</a>
+{{/partial}}
+
+{{#partial "usuario"}}
+    <p>{{usuario}}</p>
+{{/partial}}
+
+{{#partial "content"}}
+     <h2 class="titulo">HC de la organización</h2>
+     {{#each organizaciones}}
+         <div class="flex-row organizacion-item-list">
+             <div class=" flex-clm">
+                 <h3 class="text-start">
+                     {{this.razonSocial}}
+                 </h3>
+                 <p class="text-start">
+                     Tipo: <span class="green">{{this.tipo}}</span>
+                 </p>
+             </div>
+             <form id="acciones" method="get" class="botones flex-row">
+                 <button type="submit" form="acciones" formaction="/home/organizaciones/{{this.id}}/composicion-hc/consulta"
+                         class="btn-consulta">
+                     Composicion HC
+                 </button>
+                 <button type="submit" form="acciones" formaction="/home/organizaciones/{{this.id}}/evolucion-hc/consulta"
+                         class="btn-consulta">
+                     Evolución HC
+                 </button>
+                 <button type="submit" form="acciones"
+                         class="btn-consulta"
+                         formaction="/home/organizaciones/hc-tipo-organizacion/{{this.tipo}}">
+
+                     HC Total del TIPOORG
+                 </button>
+
+             </form>
+         </div>
+     {{/each}}
+{{/partial}}
+
+{{>home-iniciado-sesion.hbs}}

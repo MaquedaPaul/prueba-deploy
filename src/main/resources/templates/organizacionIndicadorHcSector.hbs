@@ -1,0 +1,34 @@
+{{#partial "navbar-options"}}
+    <a class="seccion" href="/home/vinculaciones">Gestionar Vinculaciones</a>
+    <a class="seccion" href="/home/calculadora-hc">Calculadora Hc</a>
+    <a class="seccion" href="/home/mediciones">Registrar Mediciones</a>
+{{/partial}}
+
+
+{{#partial "usuario"}}
+    <p>{{usuario}}</p>
+{{/partial}}
+
+
+{{#partial "content"}}
+    <h2>Indicador HC promedio por miembro en un sector</h2>
+    <div class="divArreglo">
+        <form class="claseForm" action="/home/calculadora-hc/indicador-hc-sector">
+            <input class="flex-clm form form-evo-hc" name="sector" value="" type="search" placeholder="Ingrese el sector" required>
+            <button type="submit" class="btn-consulta">Enviar</button>
+        </form>
+            {{#if sectorNoNull}}
+                <div class="container-hc flex-clm">
+                    <div class="hc-mensual flex-clm">
+                        <h3>Sector: <span class="green">{{nombre}}</span></h3>
+                        <h3>HC promedio por miembro: <span class="green">{{hcpromedio}}</span></h3>
+                    </div>
+                </div>
+            {{else}}
+                <h3><span class="red">  El sector no existe o no pertenece a la organizacion </span></h3>
+            {{/if}}
+
+    </div>
+{{/partial}}
+
+{{>home-iniciado-sesion.hbs}}

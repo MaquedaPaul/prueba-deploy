@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Tp Anual</title>
+    <link rel="stylesheet" href="/styles.css">
+    {{#block "script"}}
+    {{/block}}
+  </head>
+
+  <body>
+    <header class="flex-between">
+        <a href="/" class="flex-between">
+          <img src="/logo.svg" alt="Logo de la Pagina">
+          <h1>Impacto Ambiental</h1>
+        </a>
+        <nav>
+            {{#block "navbar-options"}}
+            {{/block}}
+        </nav>
+        <div class="white-button">
+            <img src="/user.png" alt="Icono de Persona"></img>
+            <form action="/signout" method="POST">
+                <button type="submit">Salir</button>
+            </form>
+        </div>
+    </header>
+        <div id="main-section">
+            {{#block "content"}}
+            {{/block}}
+        </div>
+    <footer class="flex-center">
+      <p>Test</p>
+    </footer>
+  </body>
+</html>

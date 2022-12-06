@@ -1,0 +1,262 @@
+:root {
+    --verde-principal: #216869;
+    --verde-mas-claro: #49A078;
+    --color-fondo: #DCE1DE;
+    --titulo-principal-size: 20px;
+    --color-texto: #1F2421;
+    --color-seccion-activa: #9CC5A1;
+    --color-boton-rechazar: #9CC5A1;
+    --fonts: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+html {
+    background-color: var(--color-fondo);
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    height: 100%;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin: 0;
+}
+
+* {
+    font-family: var(--fonts);
+    color: var(--color-texto);
+}
+
+header {
+    height: 60px;
+    background-color: var(--verde-principal);
+    padding: 5px 20px;
+}
+
+nav {
+    padding-left: 30px;
+    width: 100%;
+    height: 100%;
+}
+
+#main-section {
+    padding: 20px;
+    background-color: var(--color-fondo);
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+footer {
+    font-weight: bold;
+    justify-content: center;
+    background-color: var(--verde-principal);
+    height: 50px;
+    margin-top: auto;
+}
+
+.logo {
+    text-decoration: none;
+    color: var(--color-texto);
+}
+
+.logo h1 {
+    margin: 0;
+    font-size: var(--titulo-principal-size);
+    padding-left: 10px;
+}
+
+.logo img {
+    height: 50px;
+    width: 50px;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.flex-clm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btn-logout {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 60px;
+    border-radius: 100%;
+}
+
+/*TODO AGREGAR ANIMACIÓN PARA QUE EL COLOR SE CAMBIE DE FORMA MÁS SUAVE*/
+.btn-logout:hover {
+    background-color: var(--verde-mas-claro);
+}
+
+.btn-logout label {
+    height: 60px;
+    width: 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.btn-logout input {
+    background-color: inherit;
+    border: none;
+}
+
+.secciones {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    height: 90%;
+}
+
+.seccion {
+    width: 160px;
+    height: 100%;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 3px solid var(--verde-principal);
+    margin: 0px 10px;
+    text-align: center;
+    text-decoration: none;
+    color: var(--color-texto);
+}
+
+.seccion:hover, .active {
+    border-color: var(--color-seccion-activa);
+    color: var(--color-seccion-activa);
+}
+
+.titulo {
+    font-size: 40px;
+    text-align: center;
+}
+
+/*COSAS DEL HC*/
+
+.container-hc {
+    height: 300px;
+    justify-content: center;
+    align-items: center;
+}
+
+.hc-mensual, .hc-anual {
+    height: 150px;
+    width: 400px;
+    border: 3px solid var(--color-texto);
+    margin-bottom: 30px;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 10px;
+}
+
+.hc-mensual *, .hc-anual * {
+    margin: 0;
+}
+
+.green, .organizacion-item-list p span {
+    color: var(--verde-principal);
+    font-weight: bold;
+}
+
+.form-evo-hc {
+    border: 3px solid var(--verde-principal);
+    width: 500px;
+    padding: 10px;
+    height: 200px;
+    justify-content: space-between;
+    border-radius: 10px;
+}
+
+.form-evo-hc * {
+    margin: 0;
+}
+
+.form-evo-hc label {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+}
+
+label input[type="month"] {
+    height: 30px;
+    width: 200px;
+    outline: none;
+    background-color: var(--color-fondo);
+    border: 1px solid var(--color-texto);
+    border-radius: 10px;
+    text-align: center;
+    font-size: 15px;
+}
+
+.btn {
+    background-color: var(--verde-principal);
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 70px;
+    color: var(--color-texto);
+    border-radius: 10px;
+}
+
+.btn-consulta {
+    background-color: var(--verde-principal);
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 55px;
+    width: 150px;
+    color: var(--color-texto);
+    border-radius: 10px;
+    margin: 10px;
+}
+
+.btn:hover, .btn-consulta {
+    background-color: var(--verde-mas-claro);
+}
+
+.organizacion-item-list {
+    justify-content: space-between;
+    width: 100%;
+    margin: 5px 10px;
+    border: 3px solid var(--verde-principal);
+    height: 70px;
+}
+
+.organizacion-item-list * {
+    margin: 0;
+    padding: 5px;
+}
+
+.container {
+    width: 100%;
+}
+
+.botones {
+    height: 50px;
+    width: 500px;
+    justify-content: space-evenly;
+}
+
+#grafico {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+

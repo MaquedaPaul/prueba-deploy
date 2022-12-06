@@ -1,0 +1,31 @@
+{{#partial "navbar-options"}}
+    <a href="/home/composicion-hc" class="seccion" >Compocicion Hc del Sector</a>
+    <a href="/home/evolucion-hc" class="seccion">Evolución HC del Sector</a>
+    <a href="/home/hc-total" class="seccion">HC Total</a>
+    <a href="/home/organizaciones" class="seccion active">Organizaciones</a>
+{{/partial}}
+
+{{#partial "usuario"}}
+    <p>{{usuario}}</p>
+{{/partial}}
+
+
+{{#partial "content"}}
+     <h2>Evolución HC de {{nombreOrg}}</h2>
+         <form id="evolucion" method="get" action="/home/organizaciones/{{id}}/evolucion-hc/grafico" class="flex-clm form-evo-hc">
+             <h3>Ingrese el intervalo a consultar</h3>
+             <label for="inicio">
+                 Inicio
+                 <input type="month" id="inicio" name="inicio" max="30-12-2022"/>
+             </label>
+             <label for="fin">
+                 Fin
+                 <input type="month" id="fin" name="fin" max="30-12-2022"/>
+             </label>
+             <button form="evolucion" type="submit" class="btn">
+                 Consultar
+             </button>
+         </form>
+{{/partial}}
+
+{{>home-iniciado-sesion.hbs}}

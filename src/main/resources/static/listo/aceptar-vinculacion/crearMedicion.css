@@ -1,0 +1,114 @@
+a:active {
+    color: black;
+}
+
+html {
+    background-color: #E6F2EB;
+}
+
+body {
+    font-family: Lato-sa, sans-serif;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin: 0;
+}
+
+h1 {
+    font-family: Lato-sa, sans-serif;
+}
+
+nav {
+    display: flex;
+    background-color: #2FCC70;
+    justify-content: space-between;
+    padding: 20px;
+    align-items: center;
+}
+
+a {
+    display: flex;
+    color: black;
+    gap: 30px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+#main-section {
+    background-color: #E6F2EB;
+
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 50px;
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+    padding-bottom: 200px;
+    flex-grow: 1;
+}
+
+h2 {
+    font-size: 40px;
+    padding: 40px;
+    text-align: center;
+    margin: 0;
+    background-color: #E6F2EB;
+}
+
+footer {
+    display: flex;
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+    background-color: #2FCC70;
+    height: 50px;
+    margin-top: auto;
+}
+
+img {
+    width: 50px;
+    height: 50px;
+}
+
+.white-button {
+    padding: 5px;
+    border: solid black;
+    background-color: white;
+    cursor: pointer;
+}
+
+form {
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    height: 20px;
+
+}
+
+form div {
+    margin-bottom: 20px;
+    font-size: 25px;
+    margin-right: 20px;
+    width: 100%;
+
+}
+
+form div label {
+    font-size: 25px;
+    font-weight: bold;
+    display: block;
+}
+
+#below-buttons{
+    font-weight: bold;
+    margin-right: 50px;
+    width: 30%;
+    display: inline-flex;
+}
+#ingresar{
+    font-weight: bold;
+    font-size: 25px;
+}

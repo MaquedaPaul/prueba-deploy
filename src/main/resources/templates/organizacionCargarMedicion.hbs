@@ -1,0 +1,55 @@
+{{#partial "navbar-options"}}
+    <a class="seccion" href="/home/vinculaciones">Gestionar Vinculaciones</a>
+    <a class="seccion" href="/home/calculadora-hc">Calculadora Hc</a>
+    <a class="seccion" href="/home/mediciones">Registrar Mediciones</a>
+{{/partial}}
+
+{{#partial "content"}}
+    <h2>Crear Medición</h2>
+    <form class="flex-clm form-evo-hc" id="acciones">
+        <label for="tipo-consumo"><h3>Tipo de consumo</h3></label>
+        <input list="tipo-consumos" id="tipo-consumo" name="tipo-de-consumo" class="flex-clm form form-evo-hc">
+        <datalist id="tipo-consumos">
+            {{#each tipoconsumos}}
+                <option value="{{nombre}}"></option>
+            {{/each}}
+        </datalist>
+
+        <label for="periodicidad" ><h3>Periodicidad</h3></label>
+        <select id=periodicidad name="periodicidad" class="flex-clm form form-evo-hc">
+            <option disabled="">Selecciona una opcion</option>
+            <option value="Anual">Anual</option>
+            <option value="Mensual">Mensual</option>
+        </select>
+
+        <label for="valor"><h3>Valor</h3></label>
+        <input type="number" min="1" class="flex-clm form form-evo-hc" id="valor" name="valor">
+
+        <label for="fecha-medicion"><h3>Fecha de medicion</h3> </label>
+        <input max="2022-10" type="month" id="fecha-medicion"
+               name="fecha-medicion" class="flex-clm form form-evo-hc">
+        <div>
+            <button type="submit" form="acciones" formaction="/home/mediciones"
+                    class="btn-consulta">
+                Atrás
+            </button>
+            <button id="ingresar" type="submit" form="acciones" formmethod="post"
+                    formaction="/home/mediciones/perse/creado"
+                    class="btn-consulta">
+                Ingresar
+            </button>
+        </div>
+
+        {{#if tipoConsumoNull}}
+            Error: el tipo de consumo ingresado no existe
+        {{/if}}
+        {{#if exito}}
+            La medicion fue cargada con exito
+        {{/if}}
+    </form>
+
+
+
+{{/partial}}
+
+{{>home-iniciado-sesion.hbs}}

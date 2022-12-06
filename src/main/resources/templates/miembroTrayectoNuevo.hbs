@@ -1,0 +1,45 @@
+{{#partial "navbar-options"}}
+    <a class="seccion" href="/recomendaciones">Recomendaciones</a>
+    <a class="seccion" href="/home/vinculacion">Solicitar vinculacion</a>
+    <a class="seccion" href="/home/trayectos">Trayectos</a>
+{{/partial}}
+
+{{#partial "content"}}
+    <form class="scroll-box gap" action="/home/trayectos/registro/tramo-nuevo" method="POST">
+        <div class="scroll-box">
+            <label for="tipo-transporte" class="paragraph-header">Tipo Transporte</label>
+            <select id="tipo-transporte" name="tipo-transporte">
+                <option>Publico</option>
+                <option>Propulcion Humana</option>
+            </select>
+        </div>
+        <div class="scroll-box">
+            <p class="paragraph-header">Punto de Partida</p>
+            <label for="localidad-partida">Localidad id</label>
+            <input id="localidad-partida" name="localidad-partida">
+
+            <label for="calle-partida">Calle</label>
+            <input id="calle-partida" name="calle-partida">
+
+            <label for="altura-partida">Altura</label>
+            <input id="altura-partida" name="altura-partida">
+        </div>
+        <div class="scroll-box">
+            <p class="paragraph-header">Punto de Llegada</p>
+            <label for="localidad-llegada">Localidad id</label>
+            <input id="localidad-llegada" name="localidad-llegada">
+
+            <label for="calle-llegada">Calle</label>
+            <input id="calle-llegada" name="calle-llegada">
+
+            <label for="altura-llegada">Altura</label>
+            <input id="altura-llegada" name="altura-llegada">
+        </div>
+        <div class="flex-center gap">
+            <a href="/home/trayectos/registro">Volver</a>
+            <button type="summit">Cargar</button>
+        </div>
+    </form>
+{{/partial}}
+
+{{>home-iniciado-sesion.hbs}}

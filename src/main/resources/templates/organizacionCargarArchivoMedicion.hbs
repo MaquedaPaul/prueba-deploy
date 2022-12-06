@@ -1,0 +1,38 @@
+{{#partial "navbar-options"}}
+    <a class="seccion" href="/home/vinculaciones">Gestionar Vinculaciones</a>
+    <a class="seccion" href="/home/calculadora-hc">Calculadora Hc</a>
+    <a class="seccion" href="/home/mediciones">Registrar Mediciones</a>
+{{/partial}}
+
+{{#partial "content"}}
+    <h2>Cargar Archivo Mediciones</h2>
+    <form enctype="multipart/form-data" method="post" id="id-form" class="flex-clm form form-evo-hc">
+        <h4>Aceptados:<span class="green"> .CSV</span></h4>
+        <label for="fileSelect"><h3>Arrastre o haga click para subir:</h3></label>
+        <input class="white-button-drop" id="fileSelect" type="file"
+               name="uploaded_file"
+               accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/>
+        <div>
+            <button type="submit" form="id-form" formaction="/home/mediciones"
+                    class="btn-consulta">
+                Atrás
+            </button>
+            <button id="ingresar" type="submit" form="id-form" formmethod="post"
+                    class="btn-consulta">
+                Ingresar
+            </button>
+        </div>
+        {{#if ingresoValido}}
+            Archivo CSV subido correctamente
+        {{/if}}
+        {{#if formatoNoValido}}
+            El formato del Archivo CSV es inválido
+        {{/if}}
+        {{#if sinArchivo}}
+            No se subió ningún archivo
+        {{/if}}
+    </form>
+
+{{/partial}}
+
+{{>home-iniciado-sesion.hbs}}

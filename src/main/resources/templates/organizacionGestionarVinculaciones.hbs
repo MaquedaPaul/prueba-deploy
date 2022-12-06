@@ -1,0 +1,36 @@
+{{#partial "navbar-options"}}
+    <a class="seccion" href="/home/vinculaciones">Gestionar Vinculaciones</a>
+    <a class="seccion" href="/home/calculadora-hc">Calculadora Hc</a>
+    <a class="seccion" href="/home/mediciones">Registrar Mediciones</a>
+{{/partial}}
+
+
+{{#partial "content"}}
+    <h2>Solicitudes</h2>
+    <div id="tarjetas">
+        {{#each solicitudes}}
+            <div class="tarjeta">
+                <div class="header-tarjeta">
+                    <h3>{{miembroSolicitante.nombre}} {{miembroSolicitante.apellido}}</h3>
+                    <h3>{{sectorSolicitado.nombre}}</h3>
+                </div>
+                <form id="formulario" method="POST">
+                    <button form="formulario" type="submit" formaction="/home/vinculaciones/{{id}}/aceptar" formmethod="post">
+                        <img src="/check-accept.svg" alt="x">
+                    </button>
+                    <button form="formulario" type="submit" formaction="/home/vinculaciones/{{id}}/rechazar" formmethod="post">
+                        <img src="/x-delete.svg" alt="J">
+                    </button>
+                 </form>
+            </div>
+        {{/each}}
+        {{#if miembroAceptado}}
+            <h3>Fue aceptado: {{solicitud.miembroSolicitante.nombre}} {{solicitud.miembroSolicitante.apellido}}</h3>
+            {{/if}}
+        {{#if miembroRechazado}}
+            <h3>Fue rechazado: {{solicitud.miembroSolicitante.nombre}} {{solicitud.miembroSolicitante.apellido}}</h3>
+        {{/if}}
+    </div>
+{{/partial}}
+
+{{>home-iniciado-sesion.hbs}}

@@ -1,0 +1,27 @@
+{{#partial "navbar-options"}}
+    <a href="/home/composicion-hc" class="seccion" >Compocicion Hc del Sector</a>
+    <a href="/home/evolucion-hc" class="seccion">Evolución HC del Sector</a>
+    <a href="/home/hc-total" class="seccion">HC Total</a>
+    <a href="/home/organizaciones" class="seccion ">Organizaciones</a>
+{{/partial}}
+
+{{#partial "usuario"}}
+    <p>{{usuario}}</p>
+{{/partial}}
+
+{{#partial "content"}}
+      <h2 class="titulo">HC Total de {{tipo}}</h2>
+         <div class="container-hc flex-clm">
+             <div class="hc-mensual flex-clm">
+                 <h3 class="hc-periodo">HC del periodo <span class="green">{{periodoActual.mes}}/{{periodoActual.anio}}</span></h3>
+                 <h3 class="hc-total green">{{valorMensual}}{{unidad}}</h3>
+             </div>
+             <div class="hc-anual flex-clm">
+                 <h3 class="hc-periodo">HC del año <span class="green">{{periodoActual.anio}}</span></h3>
+                 <h3 class="hc-total green">{{valorAnual}}{{unidad}}</h3>
+             </div>
+         </div>
+{{/partial}}
+
+{{>home-iniciado-sesion.hbs}}
+

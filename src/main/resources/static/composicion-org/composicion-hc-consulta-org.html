@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Home - Impacto Ambiental</title>
+  <link
+          rel="stylesheet"
+          href="composicion-hc-org.css"
+  />
+  <!--SCRIPTS PARA EL GRAFICO-->
+</head>
+
+<body>
+<header class="flex-row">
+  <a href="#" class="logo flex-row">
+    <img src="#" alt="Logo de la página"/>
+    <h1>Impacto Ambiental</h1>
+  </a>
+  <nav class="flex-row">
+    <div class="secciones flex-row">
+      <a href="#" class="seccion active"> Composición HC del Sector </a>
+      <a href="#" class="seccion"> Evolución HC del Sector </a>
+      <a href="#" class="seccion"> HC Total </a>
+      <a href="#" class="seccion"> Organizaciones </a>
+    </div>
+    <!--TODO PONER EL LINK DEL HOME SIN LOGGEAR-->
+  </nav>
+  <form action="/index.html" method="POST" class="btn-logout">
+    <label for="boton-logout">
+      <img
+              src="Gender_Neutral_User_icon-icons.com_55902.svg"
+              alt="icono logout"
+      />
+      <input type="submit" id="boton-logout" value="Salir"/>
+    </label>
+  </form>
+</header>
+<div id="main-section">
+  <h2 class="titulo">Composición de HC de la organización</h2>
+  <form id="evolucion" method="get" action="/home/evolucion-hc/resultado" class="flex-clm form-evo-hc">
+    <h3>Ingrese el intervalo a consultar</h3>
+    <label for="inicio">
+      Inicio
+      <input type="month" id="inicio" max="30-12-2022"/>
+    </label>
+    <label for="fin">
+      Fin
+      <input type="month" id="fin" max="30-12-2022"/>
+    </label>
+    <button form="evolucion" type="submit" class="btn">
+      Consultar
+    </button>
+  </form>
+</div>
+<footer class="flex-row">
+  <p>Pirulo S.A. Derechos Reservados</p>
+</footer>
+</body>
+</html>

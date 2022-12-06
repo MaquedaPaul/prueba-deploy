@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Composicion de HC - Impacto Ambiental</title>
+    <link rel="stylesheet" href="composicion-hc.css">
+
+    <!--SCRIPTS PARA LOS GRAFICOS-->
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {'packages': ['bar']});
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            /*ARRAY DE ARRAYS QUE REPRESENTAN CADA UNO UNA FILA*/
+            const datos = [
+                /*COLUMNAS*/
+                ['Mes', 'Mediciones', 'Miembros'],
+                /*DATOS*/
+                ['2014', 1000, 400],
+                ['2015', 1170, 460],
+                ['2016', 660, 1120],
+                ['2017', 1030, 540],
+                ['2017', 1030, 540],
+                ['2017', 1030, 540],
+                ['2017', 1030, 540],
+                ['2017', 1030, 540],
+                ['2017', 1030, 540],
+                ['2017', 1030, 540],
+                ['2017', 1030, 540]
+            ];
+
+            var data = google.visualization.arrayToDataTable(datos);
+
+            var options = {
+                chart: {
+                    title: 'Nombre Sector',
+                    subtitle: 'Periodo XX/XXXX - XX/XXXX',
+                }
+            };
+
+            var chart = new google.charts.Bar(document.getElementById('grafico'));
+
+            chart.draw(data, google.charts.Bar.convertOptions(options));
+        }
+    </script>
+
+</head>
+
+<body>
+<header class="flex-row">
+    <a href="#" class="logo flex-row">
+        <img src="#" alt="Logo de la página">
+        <h1>Impacto Ambiental</h1>
+    </a>
+    <nav class="flex-row">
+        <div class="secciones flex-row">
+            <a href="#" class="seccion active">
+                Composición HC del Sector
+
+            </a>
+            <a href="#" class="seccion">
+                Evolución HC del Sector
+
+            </a>
+            <a href="#" class="seccion">
+                HC Total
+
+            </a>
+            <a href="#" class="seccion ">
+                Organizaciones
+            </a>
+        </div>
+        <!--TODO PONER EL LINK DEL HOME SIN LOGGEAR-->
+    </nav>
+    <form action="/index.html" method="POST" class="btn-logout">
+        <label for="boton-logout">
+            <img src="Gender_Neutral_User_icon-icons.com_55902.svg" alt="icono logout"/>
+            <input type="submit" id="boton-logout" value="Salir"/>
+        </label>
+    </form>
+</header>
+<div id="main-section">
+    <h2 class="titulo">Composición de HC del Sector</h2>
+    <div id="grafico">
+
+    </div>
+</div>
+<footer class="flex-row">
+    <p>Pirulo S.A. Derechos Reservados</p>
+</footer>
+</body>
+</html>

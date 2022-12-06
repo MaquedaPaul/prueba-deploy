@@ -1,0 +1,41 @@
+{{#partial "navbar-options"}}
+    <a class="seccion" href="/recomendaciones">Recomendaciones</a>
+    <a class="seccion" href="/home/vinculacion">Solicitar vinculacion</a>
+    <a class="seccion" href="/home/trayectos">Trayectos</a>
+{{/partial}}
+
+{{#partial "usuario"}}
+    {{usuario}}
+{{/partial}}
+
+{{#partial "content"}}
+    <h2>Solicitar Vinculacion</h2>
+    <form action="/home/vinculacion" method="POST">
+        <div>
+            Seleccione organización
+            <label for="selector-organizacion"></label>
+            <input class="white-button" name="organizacionSolicitada" list="organizaciones" type="search" id="selector-organizacion">
+            <datalist id="organizaciones">
+                {{#each organizaciones}}
+                    <option value="{{razonSocial}}"/>
+                {{/each}}
+            </datalist>
+        </div>
+        <div>
+            Seleccione sector
+            <label for="selector-sector"></label>
+            <input class="white-button" list="sectores" name="sectorSolicitado" value="" type="search" id="selector-sector">
+            <datalist id="sectores">
+                {{#each sectores}}
+                    <option value="{{nombre}}"/>
+                {{/each}}
+            </datalist>
+        </div>
+        <div class="below-buttons">
+            <a class="option-button" href="/home">Atrás</a>
+            <button type="submit" class="option-button">Solicitar</button>
+        </div>
+    </form>
+{{/partial}}
+
+{{>home-iniciado-sesion.hbs}}

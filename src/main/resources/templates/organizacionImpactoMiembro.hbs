@@ -1,0 +1,51 @@
+{{#partial "navbar-options"}}
+    <a class="seccion" href="/home/vinculaciones">Gestionar Vinculaciones</a>
+    <a class="seccion" href="/home/calculadora-hc">Calculadora Hc</a>
+    <a class="seccion" href="/home/mediciones">Registrar Mediciones</a>
+{{/partial}}
+
+
+{{#partial "usuario"}}
+    <p>{{usuario}}</p>
+{{/partial}}
+
+
+{{#partial "content"}}
+    <h2>Impacto de un miembro</h2>
+    <div class="divArreglo" id="main-section">
+        <form class="claseForm" method="get" action="/home/calculadora-hc/impacto-de-miembro">
+            <input class="flex-clm form form-evo-hc" type="search" name="miembro" value="" placeholder="Ingrese nombre y apellido del miembro" required>
+            <button type="submit" class="btn-consulta">
+                Enviar
+            </button>
+        </form>
+
+
+            {{#if miembroNoNull}}
+                {{#if comprobacion}}
+
+                    <div class="container-hc flex-clm">
+                        <div class="hc-mensual flex-clm">
+                            <h3>Nombre: <span class="green">{{nombre}}</span></h3>
+                            <h3>Apellido: <span class="green">{{apellido}}</span></h3>
+                            <h3>Impacto: <span class="green">{{impacto}}%</span></h3>
+                        </div>
+                    </div>
+                {{else}}
+                    <div class="container-hc flex-clm">
+                        <div class="hc-mensual flex-clm">
+                            <h3>Nombre: <span class="green">{{nombre}}</span></h3>
+                            <h3>Apellido: <span class="green">{{apellido}}</span></h3>
+                            <h3>Impacto: <span class="green">{{impacto}}%</span></h3>
+                            Error: el miembro ingresado no pertenece a la organizacion
+                        </div>
+                    </div>
+
+                {{/if}}
+            {{else}}
+                Error: el miembro no existe
+            {{/if}}
+    </div>
+{{/partial}}
+
+{{>home-iniciado-sesion.hbs}}

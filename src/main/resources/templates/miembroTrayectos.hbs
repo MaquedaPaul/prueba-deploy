@@ -1,0 +1,23 @@
+{{#partial "navbar-options"}}
+    <a class="seccion" href="/recomendaciones">Recomendaciones</a>
+    <a class="seccion" href="/home/vinculacion">Solicitar vinculacion</a>
+    <a class="seccion" href="/home/trayectos">Trayectos</a>
+{{/partial}}
+
+{{#partial "usuario"}}
+    {{usuario}}
+{{/partial}}
+
+{{#partial "content"}}
+    <h2>Gestion de Trayectos</h2>
+    <div class="below-buttons column" >
+        <a class="option-button" href="/home/trayectos/registro">
+            Registrar trayecto
+        </a>
+        <a class="option-button" href="TODO">
+            Eliminar trayecto
+        </a>
+    </div>
+{{/partial}}
+
+{{>home-iniciado-sesion.hbs}}
