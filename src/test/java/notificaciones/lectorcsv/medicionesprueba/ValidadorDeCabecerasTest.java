@@ -1,4 +1,4 @@
-package lectorcsv.medicionesprueba;
+package notificaciones.lectorcsv.medicionesprueba;
 
 import lectorcsv.ValidadorDeCabeceras;
 import org.junit.jupiter.api.Assertions;
