@@ -103,7 +103,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>com.server.Server</mainClass>
+                            <mainClass>main.java.server.Server</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
