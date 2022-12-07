@@ -31,8 +31,8 @@ public class ReporteSectorTerritorial {
   }
 
   public List<HCPorSectorTerritorial> hcPorSectorTerritorial(PeriodoMensual inicio, PeriodoMensual fin, SectorTerritorial sectorTerritorial) {
-
-    List<PeriodoMensual> periodos = gen.generarPeriodosMensualesEntre(inicio, fin);
+    //TODO que es esto
+    //List<PeriodoMensual> periodos = gen.generarPeriodosMensualesEntre(inicio, fin);
 
     return null;
 

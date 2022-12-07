@@ -69,7 +69,7 @@ public class OrganizacionController extends AccountController {
   }
 
   public ModelAndView getImpactoMiembro(Request request, Response response) {
-    Map<String, Object> model = new HashMap<>();
+
 
     String nombreApellido = request.queryParams("miembro");
     response.redirect("/home/calculadora-hc/impacto-de-miembro/"+nombreApellido);
@@ -81,7 +81,7 @@ public class OrganizacionController extends AccountController {
     Organizacion organizacion = obtenerOrganizacion(request);
     Map<String, Object> model = new HashMap<>();
     String nombreApellido = request.params("nombreApellido");
-    Miembro miembro =RepoMiembros.getInstance().getMiembrosPorNombreYApellido(nombreApellido);
+    Miembro miembro = RepoMiembros.getInstance().getMiembrosPorNombreYApellido(nombreApellido);
     boolean miembroNoNull = miembro != null;
     model.put("miembroNoNull", miembroNoNull);
     if(miembroNoNull){
@@ -107,7 +107,7 @@ public class OrganizacionController extends AccountController {
   }
 
   public ModelAndView getIndicadorHcSectorBuscar(Request request, Response response) {
-    Organizacion organizacion = obtenerOrganizacion(request);
+
     Map<String, Object> model = new HashMap<>();
     model.put("sectorNoNull", true);
     model.put("comprobacion", true);
@@ -145,7 +145,7 @@ public class OrganizacionController extends AccountController {
   }
 
   public ModelAndView getMedicionesPerse(Request request, Response response) {
-    Organizacion organizacion = obtenerOrganizacion(request);
+
     Map<String, Object> model = new HashMap<>();
     model.put("tipoconsumos",RepoTipoDeConsumo.getInstance().getTiposConsumo());
 
@@ -230,7 +230,13 @@ public class OrganizacionController extends AccountController {
 
 
     File uploadDir = new File("upload");
-    uploadDir.mkdir();
+
+    boolean comprobacion =uploadDir.mkdir();
+    if(!comprobacion){
+      //TODO
+      return null;
+    }
+
     //staticFiles.externalLocation("upload");
     Path tempFile = Files.createTempFile(uploadDir.toPath(), "", ".csv");
 

@@ -1,7 +1,5 @@
-package notificaciones.lectorcsv;
+package lectorcsv;
 
-import lectorcsv.FormatoDeFechas;
-import lectorcsv.TipoPerioricidad;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

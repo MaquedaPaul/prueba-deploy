@@ -5,14 +5,19 @@
 {{/partial}}
 
 {{#partial "content"}}
+    <div class="mejorar">
+
     <form class="scroll-box gap" action="/home/trayectos/registro/tramo-nuevo" method="POST">
         <div class="scroll-box">
             <label for="tipo-transporte" class="paragraph-header">Tipo Transporte</label>
-            <select id="tipo-transporte" name="tipo-transporte">
-                <option>Publico</option>
-                <option>Propulcion Humana</option>
-            </select>
+            <input list="tipo-transportes" id="tipo-transporte" name="tipo-transporte" >
+            <datalist id="tipo-transportes">
+                {{#each tipotransportes}}
+                    <option value="{{lineaUtilizada.nombre}}"></option>
+                {{/each}}
+            </datalist>
         </div>
+
         <div class="scroll-box">
             <p class="paragraph-header">Punto de Partida</p>
             <label for="localidad-partida">Localidad id</label>
@@ -35,11 +40,24 @@
             <label for="altura-llegada">Altura</label>
             <input id="altura-llegada" name="altura-llegada">
         </div>
+        {{#if tramoIncorecto}}
+                <p style="color: red">El tramo Ingresado es incorrecto</p>
+            {{/if}}
         <div class="flex-center gap">
-            <a href="/home/trayectos/registro">Volver</a>
-            <button type="summit">Cargar</button>
+
+            <a class="btn-consulta" href="/home/trayectos/registro">
+            Volver
+            </a>
+            <button  class="btn-consulta">
+                Cargar
+            </button>
+
         </div>
+
     </form>
+
+    </div>
+
 {{/partial}}
 
 {{>home-iniciado-sesion.hbs}}

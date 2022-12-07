@@ -21,7 +21,7 @@ public class ReporteOrganizaciones {
     this.repoOrganizaciones = repo;
   }
 
-  public List<EvolucionHCOrganizacion> EvolucionHCEntre(Organizacion org, PeriodoMensual inicio, PeriodoMensual fin) {
+  public List<EvolucionHCOrganizacion> evolucionHCEntre(Organizacion org, PeriodoMensual inicio, PeriodoMensual fin) {
 
     List<PeriodoMensual> periodos = new GeneradorDePeriodos().generarPeriodosMensualesEntre(inicio, fin);
 

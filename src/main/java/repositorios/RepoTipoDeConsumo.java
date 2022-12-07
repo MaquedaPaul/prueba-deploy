@@ -48,18 +48,5 @@ public class RepoTipoDeConsumo implements WithGlobalEntityManager, RepoTipoConsu
   public TipoConsumo getTipoConsumoById(long id) {
     return entityManager().find(TipoConsumo.class,id);
   }
-  //TODO
-  //El metodo de arriba recibe un Tipo de Consumo o un String?
-  // ,en el segundo caso habria que hacer lo de abajo
 
- /* public TipoConsumo getTipoDeConsumo(String nombre) {
-    List<TipoConsumo> tipos = this.tiposDeConsumos
-        .stream()
-        .filter(tipo -> Objects.equals(tipo.getNombre(), nombre))
-        .collect(Collectors.toList());
-    if (tipos.isEmpty()) {
-      return null;
-    }
-    return tipos.get(0);
-    */
   }

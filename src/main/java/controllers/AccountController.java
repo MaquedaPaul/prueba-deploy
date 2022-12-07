@@ -6,7 +6,6 @@ import spark.Response;
 public class AccountController {
   public static String comprobarSession(Request request, Response response) {
     String usuario = request.session().attribute("logged_user");
-    String tipoCuenta = request.session().attribute("logged_user");
     if (usuario == null ) {
       response.redirect("/signin");
       return null;

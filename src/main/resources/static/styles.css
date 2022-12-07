@@ -179,8 +179,9 @@ form div label {
 .tarjetaRecomendacion {
   border: 2px solid black;
   border-radius: 5px;
-  width: 250px;
-  height: 250px;
+  width: auto;
+  height: auto;
+  margin-bottom: 10px;
 }
 
 .below-buttons {
@@ -474,4 +475,8 @@ button:hover {
 }
 .first:hover {
   box-shadow: 0 0 40px 40px var(--main-green) inset;
+}
+
+.mejorar{
+  width:450px
 }

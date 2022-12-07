@@ -3,14 +3,12 @@ package controllers;
 import cuenta.AgenteCuenta;
 
 import global.Unidad;
-import mediciones.Medicion;
 import organizacion.Organizacion;
 
 import organizacion.TipoOrganizacion;
 
 import organizacion.periodo.PeriodoAnual;
 import organizacion.periodo.PeriodoMensual;
-import repositorios.RepoMediciones;
 import repositorios.RepoOrganizacion;
 import reporte.ReporteOrganizaciones;
 import reporte.ReporteSectorTerritorial;
@@ -57,7 +55,7 @@ public class AgenteController {
   }
 
   public ModelAndView getComposicionHcGrafico(Request request, Response response) {
-    AgenteCuenta agenteCuenta = request.session().attribute("cuenta");
+
 
     //OBTENER PERIODOS
     PeriodoMensual inicio = this.getPeriodoInicio(request);
@@ -122,10 +120,7 @@ public class AgenteController {
 
     //
     model.put("totalMensual",sector.calcularHC(periodo));
-    System.out.println(sector.calcularHCMiembros(periodo));
-    System.out.println(sector.calcularHCMediciones(periodo));
     //
-    List<Organizacion> orgs = sector.getOrganizaciones();
     model.put("totalAnual",sector.calcularHC(periodoAnual));
 
     model.put("unidad", "ESTO NI IDEA");
@@ -142,7 +137,6 @@ public class AgenteController {
     AgenteTerritorial agente = request.session().attribute("agente");
     SectorTerritorial sector = agente.getSectorTerritorial();
     List<Organizacion> organizaciones = sector.getOrganizaciones();
-    System.out.println(organizaciones.size());
     Map<String,Object> model = new HashMap<>();
     model.put("usuario",cuenta.getUsuario());
     model.put("organizaciones",organizaciones);
@@ -202,7 +196,7 @@ public class AgenteController {
       return null;
     }
 
-    List<EvolucionHCOrganizacion> items = new ReporteOrganizaciones(RepoOrganizacion.getInstance()).EvolucionHCEntre(org,inicio,fin);
+    List<EvolucionHCOrganizacion> items = new ReporteOrganizaciones(RepoOrganizacion.getInstance()).evolucionHCEntre(org,inicio,fin);
 
     Map<String,Object> model = new HashMap<>();
     model.put("usuario",cuenta.getUsuario());
@@ -233,7 +227,6 @@ public class AgenteController {
     PeriodoMensual inicio = this.getPeriodoInicio(request);
     PeriodoMensual fin = this.getPeriodoFin(request);
 
-    AgenteCuenta cuenta = request.session().attribute("cuenta");
     Long idOrg = Long.valueOf(request.params("id"));
     Organizacion org = RepoOrganizacion.getInstance().getOrganizacionById(idOrg);
 

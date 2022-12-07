@@ -168,7 +168,9 @@ public class CargaDeDatos implements WithGlobalEntityManager {
     Set<Tramo> tramos3 = new HashSet<>();
 
     PuntoUbicacion pu1 = new PuntoUbicacion(1,"San Lorenzo",6153);
-    PuntoUbicacion pu2 = new PuntoUbicacion(1,"25 de mayo",4224);
+
+    //TODO ni se utiliza
+    //PuntoUbicacion pu2 = new PuntoUbicacion(1,"25 de mayo",4224);
     PuntoUbicacion pu3 = new PuntoUbicacion(3,"Dante",2222);
     PuntoUbicacion pu4 = new PuntoUbicacion(3,"Dante",2900);
 
@@ -195,9 +197,9 @@ public class CargaDeDatos implements WithGlobalEntityManager {
     Miembro juan = new Miembro("JUAN","CARLOS", TipoDocumento.DNI,42222222,trayectosJuan);
     juan.setCuenta(cuentaJuan);
 
-    MiembroCuenta cuentaPedro = dbConnection.getById(1,MiembroCuenta.class);
+    MiembroCuenta cuentaPedro = dbConnection.getById(2,MiembroCuenta.class);
     Miembro pedro = new Miembro("PEDRO","LOPEZ", TipoDocumento.DNI,42223222,trayectosPedro);
-    juan.setCuenta(cuentaPedro);
+    pedro.setCuenta(cuentaPedro);
 
     MiembroCuenta cuentaDaniel = dbConnection.getById(7,MiembroCuenta.class);
     Miembro daniel = new Miembro("DANIEL","AIZCORBE", TipoDocumento.DNI,42203222,trayectosPedro);

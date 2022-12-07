@@ -19,6 +19,7 @@ import transporte.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MiembroController extends AccountController {
 
@@ -44,17 +45,19 @@ public class MiembroController extends AccountController {
   public ModelAndView pedirVinculacion(Request request, Response response) {
 /*    String usuario = comprobarSession(request, response);
     comprobarTipoCuenta(request, response, "miembro");*/
-    String usuario = obtenerUsuario(request);
+
     String organizacionSolicitada = request.queryParams("organizacionSolicitada");
     String sectorSolicitado = request.queryParams("sectorSolicitado");
     Organizacion organizacionObjetivo = RepoOrganizacion.getInstance().getOrganizacionPor(organizacionSolicitada);
 
     if (organizacionObjetivo == null) {
       response.redirect("/home/vinculacion");
+      return null;
     }
     Sector sectorObjetivo = organizacionObjetivo.obtenerSectorPor(sectorSolicitado);
     if (sectorObjetivo == null) {
       response.redirect("/home/vinculacion");
+      return null;
     }
     Miembro miembro =  obtenerMiembro(request);
     miembro.solicitarVinculacion(organizacionObjetivo, new Solicitud(miembro, sectorObjetivo));
@@ -100,27 +103,41 @@ public class MiembroController extends AccountController {
     /*comprobarSession(request, response);
     comprobarTipoCuenta(request, response, "miembro");*/
 
-    int localidadIdPartida = Integer.parseInt(request.queryParams("localidad-partida"));
+    String localidadIdPartidaString = request.queryParams("localidad-partida");
     String callePartida = request.queryParams("calle-partida");
-    int alturaPartida = Integer.parseInt(request.queryParams("altura-partida"));
-    int localidadIdLlegada = Integer.parseInt(request.queryParams("localidad-llegada"));
+    String alturaPartidaString = request.queryParams("altura-partida");
+    String localidadIdLlegadaString = request.queryParams("localidad-llegada");
     String calleLlegada = request.queryParams("calle-llegada");
-    int alturaLlegada = Integer.parseInt(request.queryParams("altura-llegada"));
-    PuntoUbicacion puntoPartida = new PuntoUbicacion(localidadIdPartida, callePartida, alturaPartida);
-    PuntoUbicacion puntoLlegada = new PuntoUbicacion(localidadIdLlegada, calleLlegada, alturaLlegada);
+    String alturaLlegadaString = request.queryParams("altura-llegada");
 
+    Map<String, Object> model = new HashMap<>();
     HashMap<String, Transporte> map = new HashMap<>();
     map.put("Publico", new TransportePublico());
     map.put("Propulcion Humana", new PropulsionHumana());
-
-    Transporte transporte = map.get(request.queryParams("tipo-transporte"));
     BuilderTrayecto trayecto = request.session().attribute("trayecto");
+    Transporte transporte;
+    PuntoUbicacion puntoPartida;
+    PuntoUbicacion puntoLlegada;
+    try {
+      int alturaLlegada = Integer.parseInt(alturaLlegadaString);
+      int localidadIdLlegada = Integer.parseInt(localidadIdLlegadaString);
+      int alturaPartida = Integer.parseInt(alturaPartidaString);
+      int localidadIdPartida = Integer.parseInt(localidadIdPartidaString);
+      transporte = map.get(request.queryParams("tipo-transporte"));
+      puntoPartida = new PuntoUbicacion(localidadIdPartida, callePartida, alturaPartida);
+      puntoLlegada = new PuntoUbicacion(localidadIdLlegada, calleLlegada, alturaLlegada);
+
+    } catch (Exception e) {
+      model.put("tramoIncorecto", true);
+      return new ModelAndView(model,"miembroTrayectoNuevo.hbs");
+    }
+
     trayecto.setTransporte(transporte).setPuntoDestino(puntoLlegada);
     try {
       trayecto.setPuntoOrigen(puntoPartida);
     } catch(Exception e) {
-      response.redirect("/home/trayectos/registro/tramo-nuevo");
-      return null;
+      model.put("tramoIncorecto", true);
+      return new ModelAndView(model,"miembroTrayectoNuevo.hbs");
     }
     trayecto.agregarTramo();
     request.session().attribute("trayecto", trayecto);
@@ -154,12 +171,22 @@ public class MiembroController extends AccountController {
     comprobarTipoCuenta(request, response, "miembro");*/
     BuilderTrayecto trayecto = request.session().attribute("trayecto");
     Trayecto trayectoNuevo = trayecto.build();
-    request.session().attribute("trayecto", null);
-    Miembro miembro = obtenerMiembro(request);
-    miembro.registrarTrayecto(trayectoNuevo);
-    RepoMiembros.getInstance().agregarMiembro(miembro);
-    miembro = obtenerMiembro(request);
-    response.redirect("/home/trayectos/registro");
-    return null;
+
+    Map<String, Object> model = new HashMap<>();
+
+    if (trayectoNuevo.getTramos().isEmpty()) {
+      //response.redirect("/home/trayectos/registro");
+      model.put("trayectoVacio",true);
+      return new ModelAndView(model,"miembroRegistrarTrayecto.hbs");
+    } else {
+      request.session().attribute("trayecto", null);
+      Miembro miembro = obtenerMiembro(request);
+      miembro.registrarTrayecto(trayectoNuevo);
+      RepoMiembros.getInstance().agregarMiembro(miembro);
+
+      model.put("trayectoCargadoConExito",true);
+      return new ModelAndView(model,"miembroRegistrarTrayecto.hbs");
+      //response.redirect("/home/trayectos/registro");
+    }
   }
 }

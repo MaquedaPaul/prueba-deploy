@@ -8,8 +8,12 @@ import spark.Response;
 
 public class SignOutController {
   public ModelAndView logOut(Request request, Response response) {
-    request.session().attribute("logged_user", null);
+
     Cuenta cuenta = request.session().attribute("cuenta");
+    if (cuenta == null) {
+      response.redirect("/signin");
+      return null;
+    }
     cuenta.limpiarSession(request);
     response.redirect("/signin");
     return null;

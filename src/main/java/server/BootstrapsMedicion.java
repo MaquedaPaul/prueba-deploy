@@ -179,9 +179,9 @@ public class BootstrapsMedicion implements WithGlobalEntityManager {
 
     gilberto.setCuenta(cuentaGilberto);
 
-
+//TODO Y este boostrap que onda?
     //TIPOS DE CONSUMO
-
+    /*
     TipoConsumo tipoConsumoGasNatural = new TipoConsumo("Gas natural",Unidad.M3,TipoActividad.COMBUSTION_FIJA,TipoAlcance.EMISION_DIRECTA);
     TipoConsumo tipoConsumoDiesel = new TipoConsumo("Diesel",Unidad.LT,TipoActividad.COMBUSTION_FIJA,TipoAlcance.EMISION_DIRECTA);
     TipoConsumo tipoConsumoNafta = new TipoConsumo("Nafta",Unidad.LT,TipoActividad.COMBUSTION_FIJA,TipoAlcance.EMISION_DIRECTA);
@@ -210,7 +210,7 @@ public class BootstrapsMedicion implements WithGlobalEntityManager {
     LocalDate medicionAño2020Afip = LocalDate.of(2020,12,11);
     LocalDate medicionAño2021Afip = LocalDate.of(2021,12,10);
     LocalDate medicionAño2022Afip = LocalDate.of(2022,11,22);
-
+*/
 
     //PERIODICIDAD
 /*

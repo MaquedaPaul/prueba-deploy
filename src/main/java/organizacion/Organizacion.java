@@ -111,9 +111,6 @@ public class Organizacion {
   }
 
   public double calcularHCTotalDeMiembros(Periodo periodo) {
-    if(!getTrayectosDeLosMiembros().findAny().isPresent()){
-      return 0;
-    }
 
     return periodo.perioricidad()
         * this.getDiasDeTrabajo()
@@ -197,7 +194,7 @@ public class Organizacion {
   }
 
   public List<Contacto> getContactos() {
-    return new ArrayList<>();
+    return this.contactos;
   }
 
   public void notificarContactos(List<MedioNotificador> medios) {

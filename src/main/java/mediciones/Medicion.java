@@ -31,7 +31,7 @@ public abstract class Medicion {
 
   private double valor;
 
-  public abstract double calcularHC(Periodo periodo);
+  public  abstract double calcularHC(Periodo periodo);
 
   public abstract double calcularHCEntre(PeriodoMensual inicio, PeriodoMensual fin);
 

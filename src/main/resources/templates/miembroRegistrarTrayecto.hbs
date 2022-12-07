@@ -5,7 +5,14 @@
 {{/partial}}
 
 {{#partial "content"}}
+
     <h2 class="titulo">Registrar trayecto</h2>
+    {{#if trayectoVacio}}
+        <p style="color: red">Error: ¡El trayecto no tiene tramos!</p>
+    {{/if}}
+    {{#if trayectoCargadoConExito}}
+        <p style="color: green">Felicidades: ¡El trayecto fue cargado con éxito!</p>
+    {{/if}}
         <div class="contenedorTrayecto borde">
             <div class="contenedorTrayecto">
                 <h3>Tramos</h3>
@@ -36,10 +43,10 @@
                 </div>
                 <div class="flex-center gap">
                     <form action="/home/trayectos/registro/eliminar" method="POST">
-                        <button type="submit" class="btn-2 first">Delete</button>
+                        <button type="submit" class="btn-2 first">Borrar</button>
                     </form>
                     <a href="/home/trayectos/registro/tramo-nuevo" class="btn-2 first">
-                        Add Tramo
+                        Agregar
                     </a>
                 </div>
             </div>
@@ -52,7 +59,7 @@
                 <button class="btn-2 first">Registrar</button>
             </form>
         </div>
-    </div>
+
 {{/partial}}
 
 {{>home-iniciado-sesion.hbs}}

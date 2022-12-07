@@ -50,9 +50,9 @@ public class GestorDeFechas {
   public boolean cumpleConElFormatoMensual(String fecha) {
 
     try {
-      List<String> valores = Arrays.stream(fecha.split("/")).collect(Collectors.toList());
-
-      YearMonth fechaNueva = YearMonth.of(Integer.parseInt(valores.get(1)), Integer.parseInt(valores.get(0)));
+      //List<String> valores = Arrays.stream(fecha.split("/")).collect(Collectors.toList());
+      //TODO no se qué debería hacer acá
+      //YearMonth fechaNueva = YearMonth.of(Integer.parseInt(valores.get(1)), Integer.parseInt(valores.get(0)));
       return true;
     } catch (Exception e) {
       return false;

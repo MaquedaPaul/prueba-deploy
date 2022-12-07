@@ -1,10 +1,14 @@
 package territorio;
 
 import cuenta.AgenteCuenta;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity
+@Getter
+@Setter
 public class AgenteTerritorial {
 
   @Id
@@ -19,9 +23,9 @@ public class AgenteTerritorial {
   @OneToOne(cascade = CascadeType.PERSIST)
   AgenteCuenta cuenta;
 
-  public AgenteTerritorial(SectorTerritorial unSector, String nombre) {
+  public AgenteTerritorial(SectorTerritorial unSector, String unNombre) {
     this.sector = unSector;
-    this.nombre = nombre;
+    this.nombre = unNombre;
   }
 
   public AgenteTerritorial() {
