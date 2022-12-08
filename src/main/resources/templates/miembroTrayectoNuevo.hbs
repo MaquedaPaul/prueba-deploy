@@ -9,13 +9,29 @@
 
     <form class="scroll-box gap" action="/home/trayectos/registro/tramo-nuevo" method="POST">
         <div class="scroll-box">
-            <label for="tipo-transporte" class="paragraph-header">Tipo Transporte</label>
-            <input list="tipo-transportes" id="tipo-transporte" name="tipo-transporte" >
-            <datalist id="tipo-transportes">
-                {{#each tipotransportes}}
-                    <option value="{{lineaUtilizada.nombre}}"></option>
-                {{/each}}
-            </datalist>
+           <label for="tipo-transporte" class="paragraph-header">Tipo Transporte</label>
+           <select id="tipo-transporte" name="tipo-transporte">
+               <optgroup label="Transporte Publico">
+                     {{#each transportesPublicos}}
+                        <option value="TRANSPORTE_PUBLICO {{display}}">{{display}}</option>
+                     {{/each}}
+               </optgroup>
+               <optgroup label="Propulsion Humana">
+                    {{#each transportesPropulsion}}
+                       <option value="PROPULSION_HUMANA {{display}}">{{display}}</option>
+                    {{/each}}
+              </optgroup>
+              <optgroup label="Vehiculo Particular">
+                   {{#each transportesParticulares}}
+                      <option value="VEHICULO_PARTICULAR {{display}}">{{display}}</option>
+                   {{/each}}
+             </optgroup>
+             <optgroup label="Servicios Contratados">
+                  {{#each transportesServicio}}
+                     <option value="SERCICIO_CONTRATADO {{display}}">{{display}}</option>
+                  {{/each}}
+            </optgroup>
+           </select>
         </div>
 
         <div class="scroll-box">
@@ -51,13 +67,9 @@
             <button  class="btn-consulta">
                 Cargar
             </button>
-
         </div>
-
     </form>
-
     </div>
-
 {{/partial}}
 
 {{>home-iniciado-sesion.hbs}}

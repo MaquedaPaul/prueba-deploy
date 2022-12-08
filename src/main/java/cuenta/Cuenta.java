@@ -48,4 +48,6 @@ public abstract class Cuenta {
   public abstract Map<String, Object> datosDelHome(Request request);
 
   public abstract void limpiarSession(Request request);
+
+  public abstract String getRecomendaciones();
 }

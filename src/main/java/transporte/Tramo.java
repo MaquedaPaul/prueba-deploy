@@ -25,7 +25,7 @@ public class Tramo {
   @JoinColumn(name = "ID_PUNTO_DESTINO")
   private PuntoUbicacion puntoDestino;
 
-  @ManyToOne(cascade = CascadeType.PERSIST)
+  @ManyToOne(cascade = CascadeType.MERGE)
   @JoinColumn(name = "ID_TRANSPORTE")
   private Transporte transporteUtilizado;
 

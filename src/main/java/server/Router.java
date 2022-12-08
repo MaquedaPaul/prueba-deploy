@@ -29,7 +29,7 @@ public class Router {
     }));
 
     Spark.before(Validador::validarAcceso);
-
+    Spark.notFound(homeController::getHome);
     Spark.after(
         (req, res) ->
         {

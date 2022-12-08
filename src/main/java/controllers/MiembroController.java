@@ -2,6 +2,7 @@ package controllers;
 
 import cuenta.MiembroCuenta;
 import cuenta.OrganizacionCuenta;
+import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 import repositorios.RepoCuentas;
 import exceptions.NoConcuerdaInicioYFin;
 import linea.PuntoUbicacion;
@@ -11,11 +12,14 @@ import organizacion.Sector;
 import organizacion.Solicitud;
 import repositorios.RepoMiembros;
 import repositorios.RepoOrganizacion;
+import repositorios.RepoTransporte;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 import transporte.*;
 
+import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -96,41 +100,39 @@ public class MiembroController extends AccountController {
   public ModelAndView getTrayectoNuevo(Request request, Response response) {
     /*comprobarSession(request, response);
     comprobarTipoCuenta(request, response, "miembro");*/
-    return new ModelAndView(null,"miembroTrayectoNuevo.hbs");
+    Map<String, Object> map = mapearTransportePortipo();
+    return new ModelAndView(map,"miembroTrayectoNuevo.hbs");
+  }
+
+  private Map<String, Object> mapearTransportePortipo() {
+    Map<String, Object> map = new HashMap<>();
+    List<Transporte> transportesPublicos = RepoTransporte.Instance.queryTransportesPor("TransportePublico");
+    List<Transporte> transportesPropulsion = RepoTransporte.Instance.queryTransportesPor("PropulsionHumana");
+    List<Transporte> transportesParticulares = RepoTransporte.Instance.queryTransportesPor("VehiculoParticular");
+    List<Transporte> transportesServicio = RepoTransporte.Instance.queryTransportesPor("ServicioContratado");
+    map.put("transportesPublicos", transportesPublicos);
+    map.put("transportesPropulsion", transportesPropulsion);
+    map.put("transportesParticulares", transportesParticulares);
+    map.put("transportesServicio", transportesServicio);
+    return map;
   }
 
   public ModelAndView cargarTramo(Request request, Response response) throws NoConcuerdaInicioYFin {
-    /*comprobarSession(request, response);
-    comprobarTipoCuenta(request, response, "miembro");*/
-
-    String localidadIdPartidaString = request.queryParams("localidad-partida");
-    String callePartida = request.queryParams("calle-partida");
-    String alturaPartidaString = request.queryParams("altura-partida");
-    String localidadIdLlegadaString = request.queryParams("localidad-llegada");
-    String calleLlegada = request.queryParams("calle-llegada");
-    String alturaLlegadaString = request.queryParams("altura-llegada");
-
     Map<String, Object> model = new HashMap<>();
-    HashMap<String, Transporte> map = new HashMap<>();
-    map.put("Publico", new TransportePublico());
-    map.put("Propulcion Humana", new PropulsionHumana());
-    BuilderTrayecto trayecto = request.session().attribute("trayecto");
-    Transporte transporte;
-    PuntoUbicacion puntoPartida;
-    PuntoUbicacion puntoLlegada;
-    try {
-      int alturaLlegada = Integer.parseInt(alturaLlegadaString);
-      int localidadIdLlegada = Integer.parseInt(localidadIdLlegadaString);
-      int alturaPartida = Integer.parseInt(alturaPartidaString);
-      int localidadIdPartida = Integer.parseInt(localidadIdPartidaString);
-      transporte = map.get(request.queryParams("tipo-transporte"));
-      puntoPartida = new PuntoUbicacion(localidadIdPartida, callePartida, alturaPartida);
-      puntoLlegada = new PuntoUbicacion(localidadIdLlegada, calleLlegada, alturaLlegada);
+    String[] queryParams = getQueryParams(request.queryParams("tipo-transporte"));
 
-    } catch (Exception e) {
-      model.put("tramoIncorecto", true);
-      return new ModelAndView(model,"miembroTrayectoNuevo.hbs");
-    }
+    PuntoUbicacion puntoPartida = generarPuntoUbicacion("localidad-partida", "calle-partida", "altura-partida", request);
+    PuntoUbicacion puntoLlegada = generarPuntoUbicacion("localidad-llegada", "calle-llegada", "altura-llegada", request);
+    TipoTransporte tipoTranporte = getTipoTransporte(queryParams);
+    Transporte transporte = tipoTranporte.getTransporte(queryParams);
+
+    if (tipoTranporte == null || puntoPartida == null || puntoLlegada == null || transporte == null) {
+        model = mapearTransportePortipo();
+        model.put("tramoIncorecto", true);
+        return new ModelAndView(model,"miembroTrayectoNuevo.hbs");
+      }
+
+    BuilderTrayecto trayecto = request.session().attribute("trayecto");
 
     trayecto.setTransporte(transporte).setPuntoDestino(puntoLlegada);
     try {
@@ -143,6 +145,37 @@ public class MiembroController extends AccountController {
     request.session().attribute("trayecto", trayecto);
     response.redirect("/home/trayectos/registro");
     return null;
+  }
+
+  private PuntoUbicacion generarPuntoUbicacion(String localidad, String calle, String altura, Request request) {
+    String localidadIdString = request.queryParams(localidad);
+    String calleString = request.queryParams(calle);
+    String alturaString = request.queryParams(altura);
+    PuntoUbicacion nuevoPunto;
+
+    try {
+      int alturaLlegada = Integer.parseInt(alturaString);
+      int localidadIdLlegada = Integer.parseInt(localidadIdString);
+      nuevoPunto = new PuntoUbicacion(localidadIdLlegada, calleString, alturaLlegada);
+    } catch (Exception e) {
+      nuevoPunto = null;
+    }
+
+    return nuevoPunto;
+  }
+
+  private String[] getQueryParams(String queryParams) {
+    return queryParams.split(" ");
+  }
+
+  private TipoTransporte getTipoTransporte(String[] queryParams) {
+    TipoTransporte tipoTransporte;
+    try {
+      tipoTransporte = TipoTransporte.valueOf(queryParams[0]);
+    } catch (Exception e) {
+      tipoTransporte = null;
+    }
+    return tipoTransporte;
   }
 
   public ModelAndView eliminarTramo(Request request, Response response) {
@@ -166,6 +199,7 @@ public class MiembroController extends AccountController {
     return null;
   }
 
+  @Transactional
   public ModelAndView crearTrayecto(Request request, Response response) {
     /*comprobarSession(request, response);
     comprobarTipoCuenta(request, response, "miembro");*/
@@ -180,6 +214,7 @@ public class MiembroController extends AccountController {
       return new ModelAndView(model,"miembroRegistrarTrayecto.hbs");
     } else {
       request.session().attribute("trayecto", null);
+
       Miembro miembro = obtenerMiembro(request);
       miembro.registrarTrayecto(trayectoNuevo);
       RepoMiembros.getInstance().agregarMiembro(miembro);

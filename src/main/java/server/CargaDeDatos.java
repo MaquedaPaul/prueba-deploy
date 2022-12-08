@@ -118,7 +118,9 @@ public class CargaDeDatos implements WithGlobalEntityManager {
     recorridoVuelta.add(finRecorridoVuelta);
 
     LineaTransporte linea144 = new LineaTransporte(TipoTransporte.COLECTIVO,"144",recorridoIda,recorridoVuelta);
+    LineaTransporte linea98 = new LineaTransporte(TipoTransporte.COLECTIVO,"98",recorridoIda,recorridoVuelta);
     dbConnection.persistir(linea144);
+    dbConnection.persistir(linea98);
   }
 
   public static void persistirTransportes() {
@@ -126,6 +128,11 @@ public class CargaDeDatos implements WithGlobalEntityManager {
     Transporte colectivo = new TransportePublico(linea,40);
     colectivo.setCombustible(dbConnection.getById(1,Combustible.class));
     dbConnection.persistir(colectivo);
+
+    LineaTransporte linea98 = dbConnection.getById(2,LineaTransporte.class);
+    Transporte colectivo98 = new TransportePublico(linea98,38);
+    colectivo98.setCombustible(dbConnection.getById(1,Combustible.class));
+    dbConnection.persistir(colectivo98);
 
     Transporte vehiculoPart = new VehiculoParticular(TipoVehiculo.AUTO,40,"FORD FIESTA");
     vehiculoPart.setCombustible(dbConnection.getById(1,Combustible.class));
@@ -138,6 +145,8 @@ public class CargaDeDatos implements WithGlobalEntityManager {
     Transporte bicicleta = new PropulsionHumana("BICICLETA");
     bicicleta.setCombustible(dbConnection.getById(1,Combustible.class));
     dbConnection.persistir(bicicleta);
+
+
   }
 
   public static void persistirCuentas() {
@@ -148,13 +157,13 @@ public class CargaDeDatos implements WithGlobalEntityManager {
     Cuenta cuentaPepsi = new OrganizacionCuenta("PEPSICO","COCACOLASUCKS");
     Cuenta cuentaMovistar = new OrganizacionCuenta("MOVISTAR","CLAROSUCKS");
     Cuenta cuentaBuenosAires = new AgenteCuenta("BUENOS AIRES","CORDOBASUCKS");
-    Cuenta cuentaAlmagro = new AgenteCuenta("ALMAGRO","MEDRANO 591");
+    //Cuenta cuentaAlmagro = new AgenteCuenta("ALMAGRO","MEDRANO 591");
     dbConnection.persistir(cuentaJuan);
     dbConnection.persistir(cuentaPedro);
     dbConnection.persistir(cuentaPepsi);
     dbConnection.persistir(cuentaMovistar);
     dbConnection.persistir(cuentaBuenosAires);
-    dbConnection.persistir(cuentaAlmagro);
+    //dbConnection.persistir(cuentaAlmagro);
     dbConnection.persistir(cuentaDaniel);
     dbConnection.persistir(cuentaMarcos);
   }
@@ -174,15 +183,15 @@ public class CargaDeDatos implements WithGlobalEntityManager {
     PuntoUbicacion pu3 = new PuntoUbicacion(3,"Dante",2222);
     PuntoUbicacion pu4 = new PuntoUbicacion(3,"Dante",2900);
 
-    Transporte vp = dbConnection.getById(2,VehiculoParticular.class);
+    Transporte vp = dbConnection.getById(3,VehiculoParticular.class);
     tramos.add(new Tramo(pu1,pu3,vp));
     Transporte c144 = dbConnection.getById(1,TransportePublico.class);
-    Transporte bici = dbConnection.getById(4,PropulsionHumana.class);
+    Transporte bici = dbConnection.getById(5,PropulsionHumana.class);
 
     tramos2.add(new Tramo(pu1,pu3,c144));
     tramos2.add(new Tramo(pu3,pu4,bici));
 
-    Transporte sc = dbConnection.getById(3,ServicioContratado.class);
+    Transporte sc = dbConnection.getById(4,ServicioContratado.class);
     tramos3.add(new Tramo(pu1,pu4,sc));
     Trayecto t1 = new Trayecto(tramos);
     Trayecto t2 = new Trayecto(tramos2);

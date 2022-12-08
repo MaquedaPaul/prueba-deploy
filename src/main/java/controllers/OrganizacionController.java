@@ -43,8 +43,6 @@ public class OrganizacionController extends AccountController {
     return cuenta.getUsuario();
   }
 
-
-
   public ModelAndView getCalculadoraHc(Request request, Response response) {
     Organizacion organizacion = obtenerOrganizacion(request);
     return new ModelAndView(organizacion, "organizacionCalculadoraHc.hbs");

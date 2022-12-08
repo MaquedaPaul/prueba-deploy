@@ -27,7 +27,12 @@ public class PropulsionHumana extends TransportePrivado {
   }
 
   @Override
-  public String getTipo() {
-    return "Propulsion Humana";
+  public TipoTransporte getTipoTransporte() {
+    return TipoTransporte.PROPULSION_HUMANA;
+  }
+
+  @Override
+  public String getDisplay() {
+    return this.herramientaUtilizada;
   }
 }

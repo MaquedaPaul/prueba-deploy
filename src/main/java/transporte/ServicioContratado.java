@@ -30,7 +30,12 @@ public class ServicioContratado extends TransportePrivado {
   }
 
   @Override
-  public String getTipo() {
-    return "Servicion Contratado";
+  public TipoTransporte getTipoTransporte() {
+    return TipoTransporte.SERCICIO_CONTRATADO;
+  }
+
+  @Override
+  public String getDisplay() {
+    return this.vehiculoContratado.toString();
   }
 }

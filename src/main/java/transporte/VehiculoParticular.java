@@ -36,7 +36,12 @@ public class VehiculoParticular extends TransportePrivado {
   }
 
   @Override
-  public String getTipo() {
-    return "Vehiculo Particular";
+  public TipoTransporte getTipoTransporte() {
+    return TipoTransporte.VEHICULO_PARTICULAR;
+  }
+
+  @Override
+  public String getDisplay() {
+    return this.tipoVehiculo + " " + this.nombre;
   }
 }

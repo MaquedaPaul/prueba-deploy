@@ -25,7 +25,7 @@ public class Validador {
       System.out.println("NO ESTABA LOGUEADO");
       System.out.println("REDIRECCIONO AL SIGNIN");
       //TODO AGREGAR PANTALLA 404 NOT FOUND
-      halt(402,"TOMATELAS QUE HACES");
+      //halt(402,"TOMATELAS QUE HACES");
       response.redirect("/signin");
       return;
     }
@@ -37,8 +37,8 @@ public class Validador {
       System.out.println("NO PUEDO ACCEDER");
       System.out.println("REDIRECCIONO AL NOT FOUND");
       //TODO AGREGAR PANTALLA 404 NOT FOUND
-      halt(402,"TOMATELAS QUE HACES");
-      response.redirect("/home");
+      //halt(404);
+      response.redirect("/");
       return;
     }
     System.out.println("PUEDO ACCEDER");

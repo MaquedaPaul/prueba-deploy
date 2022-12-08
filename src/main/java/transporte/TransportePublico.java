@@ -72,8 +72,13 @@ public class TransportePublico extends Transporte {
   }
 
   @Override
-  public String getTipo() {
-    return "Transporte Publico";
+  public transporte.TipoTransporte getTipoTransporte() {
+    return transporte.TipoTransporte.TRANSPORTE_PUBLICO;
+  }
+
+  @Override
+  public String getDisplay() {
+    return this.lineaUtilizada.diplay();
   }
 }
 

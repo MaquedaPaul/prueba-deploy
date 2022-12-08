@@ -58,11 +58,10 @@ public class RepoCuentas implements WithGlobalEntityManager {
   }
 
   public AgenteTerritorial obtenerAgente(Cuenta cuenta) {
-    return (AgenteTerritorial) entityManager()
+    return (AgenteTerritorial) checkOutOfBounds(entityManager()
         .createQuery("FROM AgenteTerritorial WHERE cuenta.id = :cuenta_id")
         .setParameter("cuenta_id",cuenta.getId())
-        .getResultList()
-        .get(0);
+        .getResultList());
   }
 
   public AgenteCuenta getCuentaAgente(String user) {

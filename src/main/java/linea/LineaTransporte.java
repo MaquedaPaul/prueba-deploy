@@ -90,4 +90,8 @@ public class LineaTransporte {
   public String getNombre() {
     return nombre;
   }
+
+  public String diplay() {
+    return this.transporte().toString() + " " + this.nombre;
+  }
 }
